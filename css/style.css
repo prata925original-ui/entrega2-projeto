@@ -1,0 +1,186 @@
+/* ARQUIVO: style.css */
+
+:root {
+    /* ======================================================= */
+    /* 🎨 1. PALETA DE CORES (MÍNIMO 8) */
+    /* ======================================================= */
+    --cor-primaria: #2c3e50;         /* Para elementos principais (ex: Header) */
+    --cor-secundaria: #3498db;       /* Para botões e destaques */
+    --cor-destaque: #e74c3c;         /* Para alertas ou avisos */
+    --cor-sucesso: #2ecc71;          /* Para feedback positivo */
+    --cor-neutra-escura: #333333;    /* Para textos */
+    --cor-neutra-media: #7f8c8d;     /* Para textos secundários */
+    --cor-neutra-clara: #ecf0f1;     /* Para fundos leves */
+    --cor-fundo-branca: #ffffff;     /* Branco puro */
+
+    /* ======================================================= */
+    /* 📐 2. ESPAÇAMENTO MODULAR (BASE 8PX) */
+    /* ======================================================= */
+    --espaco-xs: 8px;     /* 1x */
+    --espaco-s: 16px;     /* 2x */
+    --espaco-m: 24px;     /* 3x */
+    --espaco-l: 32px;     /* 4x */
+    --espaco-xl: 48px;    /* 6x */
+    --espaco-xxl: 64px;   /* 8x */
+
+    /* ======================================================= */
+    /* ✍ 3. TIPOGRAFIA HIERÁRQUICA (MÍNIMO 5 TAMANHOS) */
+    /* ======================================================= */
+    --fonte-tamanho-titulo-principal: 3.5rem;
+    --fonte-tamanho-h2: 2.5rem;
+    --fonte-tamanho-h3: 1.8rem;
+    --fonte-tamanho-paragrafo: 1.0rem;
+    --fonte-tamanho-small: 0.8rem;
+}
+
+/* Base Reset (Opcional, mas recomendado) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif; /* Defina a sua fonte */
+    color: var(--cor-neutra-escura);
+    line-height: 1.5;
+}
+/* ARQUIVO: style.css (Começando na linha 48) */
+
+/* ---------------------------------------------------- */
+/* 🌐 4. LAYOUT PRINCIPAL (CSS GRID DE 12 COLUNAS) */
+/* ---------------------------------------------------- */
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); 
+    gap: var(--espaco-s); 
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--espaco-s); 
+}
+
+/* 🧭 Posicionamento dos Elementos */
+header, footer {
+    grid-column: 1 / -1; 
+}
+
+main {
+    grid-column: 1 / 11; /* Exemplo de 10 colunas */
+}
+/* ... (Se tiver sidebar ou outros elementos de layout) ... */
+/* ---------------------------------------------------- */
+/* 🧭 5. NAVEGAÇÃO SOFISTICADA E FLEXBOX */
+/* ---------------------------------------------------- */
+header {
+    background-color: var(--cor-primaria);
+    padding: var(--espaco-m);
+    /* Outros estilos de header... */
+}
+
+nav {
+    /* Implementando Flexbox, como é obrigatório */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* ---------------------------------------------------- */
+/* 🔳 6. COMPONENTES (CARDS, BOTÕES) */
+/* ---------------------------------------------------- */
+.btn-primario {
+    background-color: var(--cor-secundaria);
+    /* Definição de padding, fonte, etc. */
+}
+
+.btn-primario:hover { 
+    /* Estilos de estado (obrigatório) */
+    opacity: 0.8;
+}
+/* ... (Estilos para cards de projeto, formulários) ... */
+/* ---------------------------------------------------- */
+/* 📱 7. BREAKPOINTS RESPONSIVOS (MÍNIMO 5) */
+/* ---------------------------------------------------- */
+
+/* Breakpoint 1: Para telas muito pequenas (ex: até 500px) */
+@media (max-width: 500px) {
+    /* Exemplo: Menu hambúrguer visível, grid principal com 1 coluna */
+    .container {
+        grid-template-columns: 1fr;
+    }
+    main {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Breakpoint 2: Exemplo para smartphones (até 768px) */
+@media (max-width: 768px) {
+    /* Ajustes intermediários */
+}
+
+/* ... e mais 3 outros breakpoints (max-width ou min-width) ... */
+/* ARQUIVO: style.css (A partir da Linha 121) */
+
+/* ---------------------------------------------------- */
+/* 📱 7. BREAKPOINTS RESPONSIVOS (MÍNIMO 5) */
+/* ---------------------------------------------------- */
+
+/* Breakpoint 3: Para tablets verticais (até 992px) */
+@media (max-width: 992px) {
+    /* Ajusta o Grid Principal para 8 colunas para dar mais flexibilidade */
+    .container {
+        grid-template-columns: repeat(8, 1fr); 
+    }
+    /* Faz os cards ocuparem 4 colunas cada, cabendo 2 por linha */
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* Breakpoint 4: Para telas médias/laptops (até 1200px) */
+@media (max-width: 1200px) {
+    /* Reduz a largura máxima do container em telas grandes */
+    .container {
+        max-width: 95%; 
+    }
+}
+
+/* Breakpoint 5: Para telas pequenas onde o menu hambúrguer será ativado */
+/* Pode ser o mesmo do 500px, mas aqui focamos na transição */
+@media (max-width: 768px) {
+    /* Redefine o espaçamento para mobile */
+    :root {
+        --espaco-s: 12px;
+        --espaco-m: 16px;
+    }
+}
+/* ARQUIVO: style.css (A partir da Linha 156) */
+
+/* ---------------------------------------------------- */
+/* 🔳 8. DETALHES DE COMPONENTES E ESTADOS FINAIS */
+/* ---------------------------------------------------- */
+
+/* Estilos de Foco (Obrigatório para Acessibilidade) */
+.btn-primario:focus, a:focus { 
+    /* Adiciona um contorno visível ao focar no elemento */
+    outline: 3px solid var(--cor-secundaria);
+    outline-offset: 2px;
+}
+
+/* Exemplo de Estado Desabilitado (Obrigatório) */
+.btn-primario:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Estilos de Formulário (Obrigatório) */
+input[type="text"], input[type="email"], textarea, select {
+    width: 100%;
+    padding: var(--espaco-s);
+    margin-bottom: var(--espaco-s);
+    border: 1px solid var(--cor-neutra-media);
+    border-radius: var(--espaco-xs);
+}
+
+/* ---------------------------------------------------- */
+/* 🔚 FIM DO ARQUIVO CSS */
+/* ---------------------------------------------------- */
